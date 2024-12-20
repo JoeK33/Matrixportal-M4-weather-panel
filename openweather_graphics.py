@@ -135,13 +135,10 @@ class OpenWeather_Graphics(displayio.Group):
         if minutes < 10:
             minutes = "0" + str(minutes)
 
-        ampm = None
-
         if hours > 12:  # Handle times later than 12:59
             hours -= 12
             ampm = "pm"
-        elif not hours:  # Handle times between 0:00 and 0:59
-            hours = 12
+        else:  # Handle times between 0:00 and 0:59
             ampm = "am"
 
         time_text = str(hours) + ":" + str(minutes) + " " + ampm
