@@ -8,7 +8,7 @@ from adafruit_display_text.label import Label
 from adafruit_bitmap_font import bitmap_font
 
 TEMP_COLOR = 0xFFA800
-DESCRIPTION_COLOR = 0xF50000
+DESCRIPTION_COLOR = 0x9E9E9E
 CITY_COLOR = 0x9000FF
 HUMIDITY_COLOR = 0x00ECF5
 WIND_COLOR = 0xCCCCCC
@@ -135,11 +135,13 @@ class OpenWeather_Graphics(displayio.Group):
         if minutes < 10:
             minutes = "0" + str(minutes)
 
-        if hours > 12:  # Handle times later than 12:59
-            hours -= 12
+        if hours > 11:  # Handle times later than 11:59
             ampm = "pm"
-        else:  # Handle times between 0:00 and 0:59
+        else:  # Handle times between 0:00 and 11:59
             ampm = "am"
+
+        if hours > 12:
+            hours -= 12
 
         time_text = str(hours) + ":" + str(minutes) + " " + ampm
 
